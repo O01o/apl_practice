@@ -20,5 +20,5 @@ S ← S = 1
 :If 1 ≠ ≢ ∪ ⍴¨ X Y S
     ⎕ ← 'Error: MatriX dimensions do not match!'
     ⎕ ← 'X:', (⍕⍴X), ', Y:', (⍕⍴Y), ', S:', (⍕⍴S) 
-    ⎕OFF 1  ⍝ スクリプトを終了
+    ⎕OFF 1 
 :EndIf
