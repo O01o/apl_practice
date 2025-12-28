@@ -1,17 +1,24 @@
 #!/usr/bin/dyalog -script
 
 ⍝ load csv data
-x ← ⎕CSV './src/test_data/lights_out/case_1_cell/x.csv' '' 4
-x ← x = 1
-⎕ ← x
+X ← ⎕CSV './src/test_data/lights_out/case_1_cell/x.csv' '' 4
+X ← X = 1
+⎕ ← X
 ⎕ ← ''
 
-y ← ⎕CSV './src/test_data/lights_out/case_1_cell/y.csv' '' 4
-y ← y = 1
-⎕ ← y
+Y ← ⎕CSV './src/test_data/lights_out/case_1_cell/y.csv' '' 4
+Y ← Y = 1
+⎕ ← Y
 ⎕ ← ''
 
-s ← ⎕CSV './src/test_data/lights_out/case_1_cell/s.csv' '' 4
-s ← s = 1
-⎕ ← s
+S ← ⎕CSV './src/test_data/lights_out/case_1_cell/s.csv' '' 4
+S ← S = 1
+⎕ ← S
 ⎕ ← ''
+
+⍝ check matrix dimentions
+:If 1 ≠ ≢ ∪ ⍴¨ X Y S
+    ⎕ ← 'Error: MatriX dimensions do not match!'
+    ⎕ ← 'X:', (⍕⍴X), ', Y:', (⍕⍴Y), ', S:', (⍕⍴S) 
+    ⎕OFF 1  ⍝ スクリプトを終了
+:EndIf
