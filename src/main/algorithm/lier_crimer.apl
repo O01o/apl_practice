@@ -35,9 +35,9 @@ LLM ← ↑ (
 ⍝ Lier-Crimer-Map
 ⍝ TARGET-CRIMER-STATE ← LCM[SPEAKER-CRIMER-STATE; TARGET-CRIMER-STATE]
 LCM ← ↑ (
+    (0 0 0)
     (0 1 2)
-    (1 1 1)
-    (2 2 2)
+    (0 2 1)
 )
 ⍝ Mask for avoiding self-referential paradox
 MASK ← (⍳5) ∘.≠ ⍳5
@@ -47,13 +47,11 @@ MASK ← (⍳5) ∘.≠ ⍳5
 ITER ← 0
 :While (⌊/SL) = 0
     ITER ← ITER + 1
-    ⎕ ← 1+(SL,SLRM)
     LLMM ← {LLM[⍵[1]; ⍵[1+⍳5]]} ¨↓ 1+(SL,SLRM)
     LLMM ← MASK ×⍉↑ LLMM
     NSL ← ∊ 3 ⌊ +/ ↑∪¨↓ LLMM
-    ⎕ ← ⍉ 2 5 ⍴ SL,NSL
     SL ← +/ ↑∪¨↓ ⍉ 2 5 ⍴ SL,NSL
-    ⎕ ← ITER LLMM SL 
+    ⎕ ← 'Lier' ITER LLMM SL 
     ⎕ ← ''
 
     :If (⌈/SL) > 2
@@ -64,10 +62,10 @@ ITER ← 0
 
 ⍝ Crimer Update
 LCMM ← {LCM[⍵[1]; ⍵[1+⍳5]]} ¨↓ 1+(SL,SCRM)
-LCMM ← MASK ×↑ LCMM
+LCMM ← MASK ×⍉↑ LCMM
 NSC ← ∊↓⍉↑ 3 ⌊ +/ ↑∪¨↓ LCMM
-SC ← SC + NSC
-⎕ ← LCMM SC
+SC ← +/ ↑∪¨↓ ⍉ 2 5 ⍴ SC,NSC
+⎕ ← 'Crimer' LCMM SC
 ⎕ ← ''
 
 ⍝ Print Result
