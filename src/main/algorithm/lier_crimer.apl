@@ -51,7 +51,7 @@ ITER ← 0
     LLMM ← MASK ×⍉↑ LLMM
     NSL ← ∊ 3 ⌊ +/ ↑∪¨↓ LLMM
     SL ← +/ ↑∪¨↓ ⍉ 2 5 ⍴ SL,NSL
-    ⎕ ← 'Lier' ITER LLMM SL 
+    ⎕ ← 'Lier Check ( TURN' ITER ')' LLMM SL 
     ⎕ ← ''
 
     :If (⌈/SL) > 2
@@ -65,7 +65,7 @@ LCMM ← {LCM[⍵[1]; ⍵[1+⍳5]]} ¨↓ 1+(SL,SCRM)
 LCMM ← MASK ×⍉↑ LCMM
 NSC ← ∊↓⍉↑ 3 ⌊ +/ ↑∪¨↓ LCMM
 SC ← +/ ↑∪¨↓ ⍉ 2 5 ⍴ SC,NSC
-⎕ ← 'Crimer' LCMM SC
+⎕ ← 'Crimer Check' LCMM SC
 ⎕ ← ''
 
 ⍝ Print Result
@@ -75,4 +75,5 @@ NMM ← {
     (SN[SI]) (LN[LI]) (CN[CI])
 }
 NM ← ↑ NMM ¨↓ NIM
+⎕ ← 'Result'
 ⎕ ← NM
