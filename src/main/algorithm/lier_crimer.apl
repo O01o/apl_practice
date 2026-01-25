@@ -30,16 +30,16 @@ SCRM ← ↑ (
 ⍝ Lier-Lier-Map
 ⍝ TARGET-LIER-STATE ← LLM[SPEAKER-LIER-STATE; TARGET-LIER-STATE]
 LLM ← ↑ (
-    (0 1 2)
-    (1 1 1)
-    (2 2 2)
+    (0 0 0)
+    (1 0 0)
+    (2 0 0)
 )
 ⍝ Lier-Crimer-Map
 ⍝ TARGET-CRIMER-STATE ← LCM[SPEAKER-CRIMER-STATE; TARGET-CRIMER-STATE]
 LCM ← ↑ (
-    (0 0 0)
     (0 1 2)
-    (0 2 1)
+    (1 1 1)
+    (2 2 2)
 )
 ⍝ Mask for avoiding self-referential paradox
 MASK ← (⍳5) ∘.≠ ⍳5
@@ -49,9 +49,10 @@ MASK ← (⍳5) ∘.≠ ⍳5
 ITER ← 0
 :While (⌊/SL) = 0
     ITER ← ITER + 1
+    ⎕ ← 1+(SL,SLRM)
     LLMM ← {LLM[⍵[1]; ⍵[1+⍳5]]} ¨↓ 1+(SL,SLRM)
-    LLMM ← MASK × ⍉↑ LLMM
-    SL ← ∊ 3 ⌊ +/ ∪¨ LLMM
+    LLMM ← MASK ×⍉↑ LLMM
+    SL ← ∊ 3 ⌊ +/ ↑∪¨↓ LLMM
     ⎕ ← ITER LLMM SL 
     ⎕ ← ''
 
@@ -64,7 +65,7 @@ ITER ← 0
 ⍝ Crimer Update
 LCMM ← {LCM[⍵[1]; ⍵[1+⍳5]]} ¨↓ 1+(SL,SCRM)
 LCMM ← MASK ×↑ LCMM
-SC ← ∊↓⍉↑ 3 ⌊ +/∪¨ LCMM
+SC ← ∊↓⍉↑ 3 ⌊ +/ ↑∪¨↓ LCMM
 ⎕ ← LCMM SC
 ⎕ ← ''
 
