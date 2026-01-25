@@ -1,7 +1,5 @@
 #!/usr/bin/dyalog -script
 
-⍝ WARNING: This program has not been implemented yet.
-
 SN ← 'MABEL' 'DOROTHY' 'JULIETTA' 'ISABELLA' 'MADELINE'
 LN ← 'UNKNOWN' 'TRUTH-TELLER' 'LIER' 'CONFLICT'
 CN ← 'UNKNOWN' 'CRIMER' 'INNOCENCE' 'CONFLICT'
@@ -31,8 +29,8 @@ SCRM ← ↑ (
 ⍝ TARGET-LIER-STATE ← LLM[SPEAKER-LIER-STATE; TARGET-LIER-STATE]
 LLM ← ↑ (
     (0 0 0)
-    (1 0 0)
-    (2 0 0)
+    (0 1 2)
+    (0 2 1)
 )
 ⍝ Lier-Crimer-Map
 ⍝ TARGET-CRIMER-STATE ← LCM[SPEAKER-CRIMER-STATE; TARGET-CRIMER-STATE]
@@ -52,7 +50,9 @@ ITER ← 0
     ⎕ ← 1+(SL,SLRM)
     LLMM ← {LLM[⍵[1]; ⍵[1+⍳5]]} ¨↓ 1+(SL,SLRM)
     LLMM ← MASK ×⍉↑ LLMM
-    SL ← ∊ 3 ⌊ +/ ↑∪¨↓ LLMM
+    NSL ← ∊ 3 ⌊ +/ ↑∪¨↓ LLMM
+    ⎕ ← ⍉ 2 5 ⍴ SL,NSL
+    SL ← +/ ↑∪¨↓ ⍉ 2 5 ⍴ SL,NSL
     ⎕ ← ITER LLMM SL 
     ⎕ ← ''
 
@@ -65,7 +65,8 @@ ITER ← 0
 ⍝ Crimer Update
 LCMM ← {LCM[⍵[1]; ⍵[1+⍳5]]} ¨↓ 1+(SL,SCRM)
 LCMM ← MASK ×↑ LCMM
-SC ← ∊↓⍉↑ 3 ⌊ +/ ↑∪¨↓ LCMM
+NSC ← ∊↓⍉↑ 3 ⌊ +/ ↑∪¨↓ LCMM
+SC ← SC + NSC
 ⎕ ← LCMM SC
 ⎕ ← ''
 
