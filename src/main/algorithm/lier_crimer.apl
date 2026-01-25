@@ -1,6 +1,6 @@
 #!/usr/bin/dyalog -script
 
-⍝ WARNING: not done
+⍝ WARNING: This program has not been implemented yet.
 
 SN ← 'MABEL' 'DOROTHY' 'JULIETTA' 'ISABELLA' 'MADELINE'
 LN ← 'UNKNOWN' 'TRUTH-TELLER' 'LIER' 'CONFLICT'
